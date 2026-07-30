@@ -56,7 +56,7 @@ if [ "${#sessions[@]}" -eq 0 ]; then
 fi
 
 for s in "${sessions[@]}"; do
-    echo "===== ${s} ====="
+    echo "===== ${s}===============  -> screen -r ${s}"
 
     # Session names come from parsing `screen -ls` output; sanitize before
     # building a filesystem path from them so nothing but the safe
