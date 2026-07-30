@@ -23,10 +23,13 @@ set -euo pipefail
 # byte-clean locale so sed/tail don't choke on "illegal byte sequence".
 export LC_ALL=C
 
-LINES="${1:-20}"
+# Named NUM_LINES, not LINES: bash treats LINES as a reserved variable
+# tied to real terminal geometry (see `checkwinsize` in bash(1)) and can
+# silently overwrite a same-named variable out from under a script.
+NUM_LINES="${1:-20}"
 
-if ! [[ "${LINES}" =~ ^[0-9]+$ ]]; then
-    echo "error: lines must be a non-negative integer, got '${LINES}'" >&2
+if ! [[ "${NUM_LINES}" =~ ^[0-9]+$ ]]; then
+    echo "error: lines must be a non-negative integer, got '${NUM_LINES}'" >&2
     exit 1
 fi
 
@@ -78,7 +81,7 @@ for s in "${sessions[@]}"; do
         # buffer; strip those so `tail` lands on real content.
         awk '{l[NR]=$0} END{n=NR; while(n>0 && l[n] ~ /^[ \t]*$/) n--; for(i=1;i<=n;i++) print l[i]}' "${outfile}" \
             | sed -e '/./,$!d' \
-            | tail -n "${LINES}"
+            | tail -n "${NUM_LINES}"
     else
         echo "(empty or unreadable)"
     fi
