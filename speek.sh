@@ -9,7 +9,7 @@
 #   ./speek.sh 50
 #
 # Notes:
-#   - "lines" defaults to 20.
+#   - "lines" defaults to 10.
 #   - Sessions owned by the current user are attempted even if dead;
 #     screen's own hardcopy call fails for those and is reported as such.
 #   - hardcopy captures the scrollback buffer size configured for that
@@ -26,7 +26,7 @@ export LC_ALL=C
 # Named NUM_LINES, not LINES: bash treats LINES as a reserved variable
 # tied to real terminal geometry (see `checkwinsize` in bash(1)) and can
 # silently overwrite a same-named variable out from under a script.
-NUM_LINES="${1:-20}"
+NUM_LINES="${1:-10}"
 
 if ! [[ "${NUM_LINES}" =~ ^[0-9]+$ ]]; then
     echo "error: lines must be a non-negative integer, got '${NUM_LINES}'" >&2

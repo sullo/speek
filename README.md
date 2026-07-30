@@ -26,16 +26,15 @@ if nothing changed.
 speek [lines]
 ```
 
-- `lines` — how many trailing lines to show per session (default: `20`)
+- `lines` — how many trailing lines to show per session (default: `10`)
 
 ```
-$ speek 10
-===== 86133.ttys006.ranger3 =====
+$ speek 5
+===== 86133.ttys006.ranger3 ===== screen -r 86133.ttys006.ranger3
 ~ this is screen one
-zsh: command not found: this
 ~
 
-===== 86202.ttys006.ranger3 =====
+===== 86202.ttys006.ranger3 ===== screen -r 86202.ttys006.ranger3
 ~ this is screen two
 ```
 
