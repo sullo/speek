@@ -29,7 +29,7 @@ export LC_ALL=C
 NUM_LINES="${1:-10}"
 
 if ! [[ "${NUM_LINES}" =~ ^[0-9]+$ ]]; then
-    echo "error: lines must be a non-negative integer, got '${NUM_LINES}'" >&2
+    echo "error: argument must be a non-negative integer, got '${NUM_LINES}'" >&2
     exit 1
 fi
 
@@ -56,7 +56,7 @@ if [ "${#sessions[@]}" -eq 0 ]; then
 fi
 
 for s in "${sessions[@]}"; do
-    echo "===== ${s}===============  -> screen -r ${s}"
+    echo "========== ${s} ========== screen -r ${s}"
 
     # Session names come from parsing `screen -ls` output; sanitize before
     # building a filesystem path from them so nothing but the safe
